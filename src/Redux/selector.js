@@ -1,0 +1,1 @@
+export const todolistSelector = (state)=>state.todoList
