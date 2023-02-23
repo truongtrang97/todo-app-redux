@@ -14,3 +14,28 @@ export const addTodo =(data) =>{
         payload :data
     }
 }
+export const searchTextFilter=(text)=>{
+    return {
+        type:'filter/searchTextFilter',
+        payload:text
+    }
+}
+export const toggleTodoStatus = (todoId) => {
+    return {
+      type: 'todoList/toggleTodoStatus',
+      payload: todoId,
+    };
+  };
+
+  export const statusFilterChange = (status) => {
+    return {
+      type: 'filters/statusFilterChange',
+      payload: status,
+    };
+  };
+  
+export const priorityFilterChange = (priorities) => {
+return {
+    type: 'filters/prioritiesFilterChange',
+    payload: priorities,
+}}
