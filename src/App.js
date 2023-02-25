@@ -2,10 +2,35 @@ import { Typography, Divider } from 'antd';
 import './App.css';
 import TodoList from './components/TodoList';
 import Filters from './components/Filters';
+import { setupServer } from './Fake_api';
+import { useEffect } from 'react';
+setupServer()
 
 const { Title } = Typography;
 
 function App() {
+  useEffect(()=>{
+    fetch("/api/todos",{
+      method:"POST",
+      body:JSON.stringify({ id: 1, name: 'Learn Yoga', completed: false, priority: 'Medium' })
+      // cover obj sang string
+    }).then(res=>{
+      fetch("api/todos")
+      .then(res=>res.json())
+      .then(res=>console.log(res))
+    })
+    fetch("api/updatetodo",{
+      method:"POST",
+      body:JSON.stringify({ id: 1, name: 'Learn Javascript', completed: true, priority: 'Medium'})
+    })
+    .then(res=>
+      fetch("api/todos")
+      .then(res=>res.json())
+      .then(res=>console.log(res))
+      )
+    })
+  // không gọi method là gì thì nó mặc định là GET
+  // khi submit lên 1 dữ liệu todos thành công thì dữ liệu trả về 1 array với item tương ứng với todo mà ta submit
   return (
     <div
       style={{
