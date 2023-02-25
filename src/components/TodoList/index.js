@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import { todosRemainingSelector } from '../../Redux/selector';
-import todoListReducer from './TodolistSlice';
+import todoListReducer, { addTodos } from './TodolistSlice';
 
 export default function TodoList() {
   const [todoName, setTodoName] = useState('');
@@ -16,13 +16,20 @@ export default function TodoList() {
   const dispatch = useDispatch();
 
   const handleAddButtonClick = () => {
-    dispatch(todoListReducer.actions.addTodo({
-        id: uuidv4(),//tự động cho 1 id ngẫu nhiên và duy nhất 
-        name: todoName,
-        priority: priority,
-        completed: false,
-      })
-    );
+    // dispatch(todoListReducer.actions.addTodo({
+    //     id: uuidv4(),//tự động cho 1 id ngẫu nhiên và duy nhất 
+    //     name: todoName,
+    //     priority: priority,
+    //     completed: false,
+    //   })
+      // dispatch 1 thunk action creator
+    dispatch(addTodos({
+      id: uuidv4(),//tự động cho 1 id ngẫu nhiên và duy nhất 
+      //     name: todoName,
+      //     priority: priority,
+      //     completed: false,
+    }))
+    
  // reset lại input
     setTodoName('');
     setPriority('Medium');

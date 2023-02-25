@@ -4,7 +4,9 @@ import TodoList from './components/TodoList';
 import Filters from './components/Filters';
 import { setupServer } from './Fake_api';
 import { useEffect } from 'react';
-setupServer()
+if(process.env.NODE_ENV==='development'){
+  setupServer()
+}
 
 const { Title } = Typography;
 

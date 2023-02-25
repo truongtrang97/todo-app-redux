@@ -17,3 +17,11 @@ const todoListReducer=createSlice({
     }
 })
 export default todoListReducer
+// action (object) và action creators ()=>{return action}
+// thunk action (function) và thunk action creators ()=> {return thunk action}
+
+export function addTodos(todo){ //thunk function=>thunk action
+    return function addTodosThunk(dispatch,getState){
+        console.log({todo})
+    }
+}
